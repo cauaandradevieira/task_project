@@ -8,7 +8,9 @@
                         <i class="fa-solid fa-list text-2xl text-indigo-400"></i>
                     </div>
                     <div>
-                        <h1 class="text-3xl font-bold">Task Project</h1>
+                        <a href="{{ route('tarefas.index') }}">
+                            <h1 class="text-3xl font-bold">Projeto de Tarefas</h1>
+                        </a>                       
                     </div>
                 </div>
             </div>
