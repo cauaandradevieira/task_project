@@ -34,7 +34,7 @@ class TarefaController extends Controller
     {
         $request->validate([
             'nome' => 'required|unique:tarefas,nome',
-            'custo' => 'required|numeric|min:0',
+            'custo' => 'required|numeric|min:1',
             'data_limite' => 'required|date',
         ]);
 
@@ -68,7 +68,7 @@ class TarefaController extends Controller
 
         $request->validate([
             'nome' => 'required|unique:tarefas,nome,' . $tarefa->id,
-            'custo' => 'required|numeric|min:0',
+            'custo' => 'required|numeric|min:1',
             'data_limite' => 'required|date',
         ]);
 
