@@ -35,7 +35,7 @@ class TarefaController extends Controller
         $request->validate([
             'nome' => 'required|unique:tarefas,nome',
             'custo' => 'required|numeric|min:1',
-            'data_limite' => 'required|date',
+            'data_limite' => 'required|date|after_or_equal:today',
         ]);
 
         $ultimaOrdem = Tarefa::max('ordem_apresentacao') ?? 0;
@@ -69,7 +69,7 @@ class TarefaController extends Controller
         $request->validate([
             'nome' => 'required|unique:tarefas,nome,' . $tarefa->id,
             'custo' => 'required|numeric|min:1',
-            'data_limite' => 'required|date',
+            'data_limite' => 'required|date|after_or_equal:today',
         ]);
 
         $tarefa->update([
