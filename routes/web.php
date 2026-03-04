@@ -20,7 +20,3 @@ Route::delete('/tarefas/{id}', [TarefaController::class, 'destroy'])->name('tare
 // Trocar posição (subir/descendo) - rota com prefixo claro
 Route::put('/tarefas/trocar-posicao/{id}/{tipo}', [TarefaController::class, 'trocarPosicao'])->name('tarefas.trocarPosicao');
 
-// Teste de view
-Route::get('/test', function () {
-    return view('principal');
-});
