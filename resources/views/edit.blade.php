@@ -17,15 +17,15 @@
                     <label class="block text-sm font-medium mb-1">Nome da Tarefa</label>
                     <input type="text" name="nome" required
                         class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400"
-                        value="{{ old('nome', $tarefa->nome) }}">
+                        value="{{ old('nome', $tarefa->nome) }}" autoFocus>
                 </div>
 
                 <!-- Custo -->
                 <div class="mb-4">
                     <label class="block text-sm font-medium mb-1">Custo (R$)</label>
-                    <input type="number" name="custo" min="0" step="0.01" required
+                        <input type="text" name="custo" id="custo" required
                         class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400"
-                        value="{{ old('custo', $tarefa->custo) }}">
+                        value="{{ old('custo', number_format($tarefa->custo, 2, ',', '.')) }}">
                 </div>
 
                 <!-- Data Limite -->
@@ -46,7 +46,30 @@
 
             </form>
         </div>
-
+        @if ($errors->any())
+                <div class="mb-4 p-4 rounded-xl border bg-red-100 border-red-300 text-red-700 text-sm font-medium">
+                    <ul class="list-disc pl-5 space-y-1">
+                        @foreach ($errors->all() as $erro)
+                            <li>{{ $erro }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
     </div>
 
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const campo = document.getElementById('custo');
+            if (!campo) return;
+
+            campo.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/[^0-9.,]/g, '');
+            });
+
+        });
+    </script>
+@endpush
